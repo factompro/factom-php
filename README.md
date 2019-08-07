@@ -18,7 +18,7 @@ $factom = new FactomAPI($api_key);
 1. Get API info
 ```php
 // Get API version
-$chains = $factom->getAPIInfo();
+$version = $factom->getAPIInfo();
 ```
 
 2. Get user info
