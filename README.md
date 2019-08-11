@@ -86,7 +86,7 @@ $chainId = "fb5ad150761da70e090cb2582445681e4c13107ca863f9037eaa2947cf7d225c";
 $firstEntry = $factom->getChainFirstEntry($chainId);
 
 // Get last entry of Factom chain
-$firstEntry = $factom->getChainLastEntry($chainId);
+$lastEntry = $factom->getChainLastEntry($chainId);
 ```
 
 8. Search user's chains by external ids
