@@ -1,5 +1,5 @@
-# PHP client for Factom PRO API
-This is a PHP client for <a href="https://factom.pro" target="_blank">Factom PRO</a> API.<br />
+# PHP client for Factom® PRO API
+This is a PHP client for <a href="https://factom.pro" target="_blank">Factom® PRO</a> API.<br />
 API documentation: <a href="https://docs.factom.pro" target="_blank">https://docs.factom.pro</a>
 
 ## Usage
@@ -15,7 +15,7 @@ $api_key = "YOUR_API_KEY";
 $factom = new FactomAPI($api_key);
 ```
 
-### 3. Use client to work with Factom PRO API
+### 3. Use client to work with Factom® PRO API
 1. Get API info
 ```php
 // Get API version
