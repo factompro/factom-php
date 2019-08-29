@@ -14,9 +14,10 @@ require_once("FactomAPI.php");
 
 ### 2. Initialize client
 ```php
-$api_key = "YOUR_API_KEY";
-$factom = new FactomAPI($api_key);
+$factom = new FactomAPI("YOUR_API_KEY");
 ```
+<a href="https://factom.pro/#plans" target="_blank">Get API key here</a>
+
 
 ### 3. Use client to work with Factom® PRO API
 1. Get API info
