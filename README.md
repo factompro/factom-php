@@ -142,3 +142,7 @@ $entry = $factom->createEntry($chainId, $extIds, $content);
 $entryHash = "dc2160b99b5f46f156e54bdebc81aef3243884b68b2c0c05e4741910738273f2";
 $entry = $factom->getEntry($entryHash);
 ```
+
+## This client supports
+✅ Factom PRO API 1.2.x<br />
+✅ Status callbacks

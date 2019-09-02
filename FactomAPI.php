@@ -23,12 +23,19 @@ class FactomAPI
     * Create chain
     * $extIds, array — One or many external ids identifying new chain. Should be sent as array of strings.
     * $content, string — (optional) The content of the first entry of the chain.
+    * $callbackURL — (optional) URL where to send status updates.
     */
-    public function createChain($extIds, $content="")
+    public function createChain($extIds, $content="", $callbackURL=NULL)
     {	
 	    $chain["extIds"] = $this->helper_base64_encode($extIds);
         $chain["content"] = $this->helper_base64_encode($content);
-        $res = $this->make_request('/chains', $chain, 'POST');
+
+        $path = '/chains';
+        if (isset($callbackURL)) {
+            $path += "?callback_url=".$callbackURL;
+        }
+
+        $res = $this->make_request($path, $chain, 'POST');
         if (isset($res["result"])) {
             $res["result"]["extIds"] = $this->helper_base64_decode($res["result"]["extIds"]);
         }
@@ -40,23 +47,31 @@ class FactomAPI
     * $chainId, string — Chain ID of the Factom chain, where to add new entry.
     * $extIds, array — (optional) One or many external ids identifying new chain. Should be sent as array of strings.
     * $content, string — (optional) The content of the new entry.
+    * $callbackURL — (optional) URL where to send status updates.
     */
-    public function createEntry($chainId, $extIds=NULL, $content="")
+    public function createEntry($chainId, $extIds=NULL, $content="", $callbackURL=NULL)
     {
         $entry["chainId"] = $chainId;
         $entry["content"] = $this->helper_base64_encode($content);
+
         if (isset($extIds)) {
             $entry["extIds"] = $this->helper_base64_encode($extIds);	    
+        }
+
+        $path = '/entries';
+        if (isset($callbackURL)) {
+            $path += "?callback_url=".$callbackURL;
+        }
+
+        $res = $this->make_request($path, $entry, 'POST');
+        if (isset($res["result"])) {
+            if (isset($res["result"]["content"])) {
+                $res["result"]["content"] = $this->helper_base64_decode($res["result"]["content"]);
             }
-            $res = $this->make_request('/entries', $entry, 'POST');
-            if (isset($res["result"])) {
-                if (isset($res["result"]["content"])) {
-                    $res["result"]["content"] = $this->helper_base64_decode($res["result"]["content"]);
-                }
-                if (isset($res["result"]["extIds"])) {
-                    $res["result"]["extIds"] = $this->helper_base64_decode($res["result"]["extIds"]);
-                }
+            if (isset($res["result"]["extIds"])) {
+                $res["result"]["extIds"] = $this->helper_base64_decode($res["result"]["extIds"]);
             }
+        }
         return $res;
     }
 
