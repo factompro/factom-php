@@ -34,11 +34,16 @@ $user = $factom->getUser();
 
 3. Create a chain
 ```php
-// Creates chain on the Factom blockchain
+// Create chain on the Factom blockchain
 $extIds[0] = "My new chain";
 $extIds[1] = "Second ExtID";
 $content = "Content of the first entry"; // optional
 $chain = $factom->createChain($extIds, $content);
+
+// Create chain and get status updates as callbacks
+// https://docs.factom.pro/#section/Status-updates
+$callbackURL = "https://mysite.com/callback.php";
+$chain = $factom->createChain($extIds, $content, $callbackURL)
 ```
 
 4. Get chains
@@ -134,6 +139,11 @@ $extIds[0] = "My new entry";
 $extIds[1] = "Second ExtID";
 $content = "Content of the new entry";
 $entry = $factom->createEntry($chainId, $extIds, $content);
+
+// Create entry and get status updates as callbacks
+// https://docs.factom.pro/#section/Status-updates
+$callbackURL = "https://mysite.com/callback.php";
+$entry = $factom->createEntry($chainId, $extIds, $content, $callbackURL)
 ```
 
 11. Get entry
