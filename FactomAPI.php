@@ -16,7 +16,7 @@ class FactomAPI
     */
     public function __construct($api_key)
     {
-        $this->endpoint = self::VERSION."/".self::VERSION;
+        $this->endpoint = self::ENDPOINT."/".self::VERSION;
 	    $this->api_key = $api_key;
     }
     /**
